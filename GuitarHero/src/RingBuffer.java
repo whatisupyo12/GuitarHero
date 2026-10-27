@@ -54,7 +54,7 @@ public class RingBuffer
 	}
 	
 	public double dequeue() {
-		
+		return 0.0
 	}
 	
 	public double peek() {
