@@ -50,11 +50,31 @@ public class RingBuffer
 			throw new IllegalStateException("The Buffer is full");
 		}
 		boolean check_round = false;
-		if()
+		int c = first;
+		
+		if((last+1) == capacity)
+		{
+			last = 0;
+		}
+		else
+		{
+			last++;
+		}
 	}
 	
 	public double dequeue() {
-		return 0.0
+		double temp = 0.0;
+		temp = buffer[first];
+		buffer[first] = 0.0;
+		if((first+1) == capacity)
+		{
+			first = 0;
+		}
+		else
+		{
+			first++;
+		}
+		return temp;
 	}
 	
 	public double peek() {
