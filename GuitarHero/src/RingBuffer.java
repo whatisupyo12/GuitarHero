@@ -49,15 +49,14 @@ public class RingBuffer
 		{
 			throw new IllegalStateException("The Buffer is full");
 		}
-		boolean check_round = false;
-		int c = first;
-		
-		if((last+1) == capacity)
+		if(((last+1) == capacity))
 		{
+			buffer[last] = x;
 			last = 0;
 		}
 		else
 		{
+			buffer[last] = x;
 			last++;
 		}
 	}
