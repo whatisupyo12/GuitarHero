@@ -75,6 +75,7 @@ public class RingBuffer
 			first++;
 		}
 		return temp;
+		//test
 	}
 	
 	public double peek() {
