@@ -79,10 +79,17 @@ public class RingBuffer
 	}
 	
 	public double peek() {
+		return buffer[first];
 		
 	}
 	
 	public String toString() {
-		
+		String info = "[";
+		int c = first;
+		while(c != last)
+		{
+			info += buffer[c] + ", ";
+			
+		}
 	}
 }
