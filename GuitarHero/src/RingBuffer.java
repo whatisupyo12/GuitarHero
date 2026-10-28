@@ -89,6 +89,17 @@ public class RingBuffer
 		{
 			info += buffer[c] + ", ";
 			
+			if(c+1 == capacity)
+			{
+				c = 0;
+			}
+			else
+			{
+				c++;
+			}
+			
 		}
+		info+="]";
+		return info;
 	}
 }
