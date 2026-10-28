@@ -87,8 +87,11 @@ public class RingBuffer
 		int c = first;
 		while(c != last)
 		{
-			info += buffer[c] + ", ";
-			
+			info += buffer[c];
+			if(c+1 != last)
+			{
+				info +=", ";
+			}
 			if(c+1 == capacity)
 			{
 				c = 0;
