@@ -8,25 +8,19 @@ public class RingBuffer
 	private int first;
 	private int last;
 	private int capacity;
+	private int size;
 	public RingBuffer(int capacity) {
 		
 		buffer = new double[capacity];
 		first = 0;
 		last = 0;
+		size = 0;
 		this.capacity = capacity;
 		
 	}
 	
 	public int size() {
-		int s = 0;
-		for (int i = 0; i < buffer.length;i++)
-		{
-			if(buffer[i] != 0)
-			{
-				s++;
-			}
-		}
-		return s;
+		return size;
 	}
 	
 	public boolean isEmpty() {	
@@ -59,6 +53,7 @@ public class RingBuffer
 			buffer[last] = x;
 			last++;
 		}
+		size++;
 	}
 	
 	public double dequeue() {
@@ -73,6 +68,7 @@ public class RingBuffer
 		{
 			first++;
 		}
+		size--;
 		return temp;
 		//test
 	}
