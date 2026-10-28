@@ -9,13 +9,13 @@ public class RingBuffer
 	private int last;
 	private int capacity;
 	private int size;
-	public RingBuffer(int capacity) {
+	public RingBuffer(int capacity1) {
 		
-		buffer = new double[capacity];
+		buffer = new double[capacity1];
 		first = 0;
 		last = 0;
 		size = 0;
-		this.capacity = capacity;
+		capacity = capacity1;
 		
 	}
 	
@@ -81,10 +81,11 @@ public class RingBuffer
 	public String toString() {
 		String info = "[";
 		int c = first;
-		while(c != last)
+		do
 		{
 			info += buffer[c];
-			if(c+1 != last)
+			
+			if(c+1 != last || (c+1==capacity && last == 0))
 			{
 				info +=", ";
 			}
@@ -97,7 +98,7 @@ public class RingBuffer
 				c++;
 			}
 			
-		}
+		}while(c != last);
 		info+="]";
 		return info;
 	}
