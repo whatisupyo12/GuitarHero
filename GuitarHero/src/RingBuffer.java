@@ -85,20 +85,20 @@ public class RingBuffer
 		}
 		String info = "[";
 		int counter = first;
-		int count = 0;
-		do
+		for(int i = 0; i < size; i++)
 		{
+			if(counter == size)
+			{
+				counter = 0;
+			}
 			info += buffer[counter];
-			count++;
-			if(count < size)
+			if(i < size-1)
 			{
 				info +=", ";
 			}
 			counter++;
-			if(counter == capacity)
-				counter = 0;
-		}while(count < size);
-		info+="]";
+		}
+		info += "]";
 		return info;
 	}
 }
