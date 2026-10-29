@@ -3,16 +3,10 @@ public class GuitarString {
 	
 	public RingBuffer ringBuffer;
 	
-	public static void main(String[] args)
-	{
-		System.out.println(44100.0/14.0);
-		int cap = (int) Math.round(44100.0/14.0);
-	}
-	
 	public GuitarString(double frequency)
 	{
-		int cap = (int) Math.round(44100.0/frequency);
-		
+		int cap = (int) Math.ceil(44100.0/frequency);
+		ringBuffer = new RingBuffer(cap);
 	}
 	
 	public GuitarString(double[] init)
