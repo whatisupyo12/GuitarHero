@@ -75,7 +75,6 @@ public class RingBuffer
 	
 	public double peek() {
 		return buffer[first];
-		
 	}
 	
 	public String toString() {
