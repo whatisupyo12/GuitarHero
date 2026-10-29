@@ -79,26 +79,25 @@ public class RingBuffer
 	}
 	
 	public String toString() {
+		if(isEmpty())
+		{
+			return "[]";
+		}
 		String info = "[";
-		int c = first;
+		int counter = first;
+		int count = 0;
 		do
 		{
-			info += buffer[c];
-			
-			if(c+1 != last || (c+1==capacity && last == 0))
+			info += buffer[counter];
+			count++;
+			if(count < size)
 			{
 				info +=", ";
 			}
-			if(c+1 == capacity)
-			{
-				c = 0;
-			}
-			else
-			{
-				c++;
-			}
-			
-		}while(c != last);
+			counter++;
+			if(counter == capacity)
+				counter = 0;
+		}while(count < size);
 		info+="]";
 		return info;
 	}
