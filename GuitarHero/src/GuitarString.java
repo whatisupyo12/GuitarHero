@@ -12,7 +12,11 @@ public class GuitarString {
 	
 	public GuitarString(double[] init)
 	{
-		
+		ringBuffer = new RingBuffer(init.length);
+		for(int i = 0; i < init.length;i++)
+		{
+			ringBuffer.enqueue(init[i]);
+		}
 	}
 	
 	public void pluck()
