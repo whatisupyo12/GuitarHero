@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 //Ishan Meher
 //Apurv Sahu
 //Period 7
@@ -8,20 +10,24 @@ public class GuitarHero {
     	
     	String keyboard = "q2we4r5ty7u8i9op-[=zxcdcfvgbnjmk,.;/' ";
         // Create two guitar strings, for concert A and C
-        double CONCERT_A = 440.0;
-        double CONCERT_C = CONCERT_A * Math.pow(2, 3.0/12.0);
-        GuitarString stringA = new GuitarString(CONCERT_A);
-        GuitarString stringC = new GuitarString(CONCERT_C);
+        
+        GuitarString[] strings = new GuitarString[keyboard.length()];
+        for(int i = 0; i < strings.length; i++)
+        {
+        	double CONCERT = 440.0 * Math.pow(1.05956, i-24);
+        	GuitarString string = new GuitarString(CONCERT);
+        	strings[i] = string;
+        }
 
         final double TEXT_POS_X = .2;
         final double TEXT_POS_Y = .5;
         
         StdDraw.text(TEXT_POS_X, TEXT_POS_Y, "Type 'a' or 'c' to play a note!");
         
-        play(stringA, stringC);
+        play(keyboard,strings);
     }
     
-    private static void play(GuitarString stringA, GuitarString stringC) {        // the main input loop
+    private static void play(String string, GuitarString[] strings) {        // the main input loop
         while (true) {
             
             // check if the user has typed a key, and, if so, process it
@@ -31,21 +37,29 @@ public class GuitarHero {
                 char key = StdDraw.nextKeyTyped();
 
                 // pluck the corresponding string
-                if (key == 'a') 
-                    stringA.pluck();
-                else if (key == 'c') 
-                    stringC.pluck();
+                int index = string.indexOf(key);
+                if(index >= 0)
+                {
+                	strings[index].pluck();
+                }
             }
 
             // compute the superposition of the samples
-            double sample = stringA.sample() + stringC.sample();
+            double sample = strings[0].sample();
+            
+            for(int i = 1; i < strings.length; i++)
+            {
+            	sample += strings[i].sample();
+            }
 
             // send the result to standard audio
             StdAudio.play(sample);
 
             // advance the simulation of each guitar string by one step
-            stringA.tic();
-            stringC.tic();
+            for(int i = 0; i < strings.length; i++)
+            {
+            	strings[i].tic();
+            }
         }
         
     }
