@@ -26,14 +26,13 @@ public class GuitarString {
 			int temp = (int)(Math.random() * 2);
 			if(temp == 1)
 			{
-				ringBuffer.enqueue(0.5);
+				ringBuffer.enqueue(0.5 * Math.random());
 			}
 			else
 			{
-				ringBuffer.enqueue(-0.5);
+				ringBuffer.enqueue(-0.5 * Math.random());
 			}
 		}
-		System.out.println(ringBuffer);
 	}
 	
 	public void tic()
@@ -41,7 +40,6 @@ public class GuitarString {
 		double first = ringBuffer.dequeue();
 		double second = ringBuffer.peek();
 		ringBuffer.enqueue(.994 * 0.5 * (first + second));
-		System.out.println(sample());
 		time++;
 	}
 	
