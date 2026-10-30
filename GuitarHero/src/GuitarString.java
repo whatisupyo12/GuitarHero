@@ -3,10 +3,11 @@ public class GuitarString {
 	
 	public RingBuffer ringBuffer;
 	private int time;
+	private int cap;
 	
 	public GuitarString(double frequency)
 	{
-		int cap = (int) Math.ceil(44100.0/frequency);
+		cap = (int) Math.ceil(44100.0/frequency);
 		ringBuffer = new RingBuffer(cap);
 	}
 	
@@ -21,8 +22,9 @@ public class GuitarString {
 	
 	public void pluck()
 	{
-		for(int i = 0; i < ringBuffer.size(); i++)
+		for(int i = 0; i < cap; i++)
 		{
+			ringBuffer.dequeue();
 			int temp = (int)(Math.random() * 2);
 			if(temp == 1)
 			{
