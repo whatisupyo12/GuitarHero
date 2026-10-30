@@ -21,7 +21,7 @@ public class GuitarString {
 	
 	public void pluck()
 	{
-		while(!ringBuffer.isFull())
+		for(int i = 0; i < ringBuffer.size(); i++)
 		{
 			int temp = (int)(Math.random() * 2);
 			if(temp == 1)
